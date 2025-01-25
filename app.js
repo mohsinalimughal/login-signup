@@ -1,9 +1,9 @@
 
-import {  onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+import {  onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 import { Auth } from "./firebase.js";
 
 
-
+const logout = document.querySelector("#form")
 
 
 onAuthStateChanged(Auth, (user) => {
@@ -20,3 +20,21 @@ onAuthStateChanged(Auth, (user) => {
     // ...
   }
 });
+
+
+
+logout.addEventListener("submit",(event)=>{
+event.preventDefault()
+
+
+
+signOut(Auth).then(() => {
+  window.location = "login.html"
+  // Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+  console.log(error)
+});
+
+})
+
